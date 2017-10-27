@@ -13,14 +13,13 @@ public abstract class AbstractStateMachine<StateType extends IState>
 	m_currentState = initialState;
     }
 
-    public void triggerTransition(StateType targetState) throws IllegalStateException
+    public void triggerTransition(StateType targetState) throws InvalidTransitionException
     {
 	boolean l_validTransition = validateTransition(new StateTransition<>(m_currentState, targetState));
 
 	if (!l_validTransition)
 	{
-	    throw new IllegalStateException(
-		    "Invalid state transition: '" + m_currentState + "' to '" + targetState + "'");
+	    throw new InvalidTransitionException("Invalid state transition: '" + m_currentState + "' to '" + targetState + "'");
 	}
 
 	m_currentState.exit();

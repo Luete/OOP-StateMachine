@@ -42,7 +42,7 @@ public class TransitionTest
     }
 
     @Test
-    public void testTransitions_Valid()
+    public void testTransitions_Valid() throws InvalidTransitionException
     {
 	_stateMachine.triggerTransition(States.SECOND);
 	_stateMachine.triggerTransition(States.INITIAL);
@@ -53,8 +53,8 @@ public class TransitionTest
 	_stateMachine.triggerTransition(States.FINISH);
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void testTransitions_Invalid()
+    @Test(expected = InvalidTransitionException.class)
+    public void testTransitions_Invalid() throws InvalidTransitionException
     {
 	_stateMachine.triggerTransition(States.SECOND);
 	_stateMachine.triggerTransition(States.INITIAL);
